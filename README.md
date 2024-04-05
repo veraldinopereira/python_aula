@@ -34,3 +34,5 @@ git pull é utilizado para atualizar do remoto para o desktop (é feito depois q
 utilizado para verificar o andamento dos comandos git
 
 `git status`
+
+`git checkout -b "nomeDaBranch"`
