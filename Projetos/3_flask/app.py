@@ -27,6 +27,5 @@ def resultado():
     else:
         return "Erro ao obter receitas", 500
 
-
 if __name__ == "__main__":
     app.run(debug=True)
