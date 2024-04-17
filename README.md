@@ -15,6 +15,10 @@ git clone é utilizado para fazer o download do repo/pasta do projeto que temos 
 
 `git clone "mais o link do repositorio"`
 
+iniciar o repositorio
+
+git init
+
 git add é utilizado para adicionar as mudanças ou os novos arquivos e códigos feitos no projeto
 
 `git add . `
