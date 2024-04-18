@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<title>Projeto Full Stack</title>
+</head>
+
+<body>
+    <main class="container">
+        <form id="form" class="mt-5">
+            <label for="">Exibir todos os pacientes</label>
+            <input class="btn btn-primary" type="submit" value="Buscar">
+        </form>
+        <div class="mb-5" id="resultado"></div>
+
+        <form id="form-id">
+            <div>
+                <label for="">Buscar paciente por id: </label>
+            </div>
+            <div class="p-2" style="width: 10em;">
+                <input type="number" name="" id="inputd-id" class="form-control">
+            </div>
+            <div class="p-2">
+                <input class="btn btn-primary" type="submit" value="Buscar">
+            </div>
+        </form>
+        <div id="resultado-id"></div>
+
+        <h3 class="mt-5">Cadastrar paciente:</h3>
+        <form id="form-cadastro" style="width: 20em;">
+            <label class="p-1 mb-1" for="">Nome:</label>
+            <input class="form-control" type="text" name="" id="">
+
+            <label class="p-1 mb-1" for="">Cidade:</label>
+            <input class="form-control" type="text" name="" id="">
+
+            <label class="p-1 mb-1" for="">Idade:</label>
+            <input class="form-control" type="number" name="" id="">
+
+            <label class="p-1 mb-1" for="">Sexo:</label>
+            <input class="form-control" type="text" name="" id="">
+
+            <input class="btn btn-primary mt-2" type="submit" value="Cadastrar">
+        </form>
+
+
+    </main>
+
+
+
+    <script>
+        const form = document.getElementById('form');
+        const formId = document.getElementById('form-id');
+
+        const resultado = document.getElementById('resultado');
+        const resultadoId = document.getElementById('resultado-id');
+
+
+        async function getAll() {
+            const req = await fetch('http://127.0.0.1:5000/pacientes');
+            const res = await req.json();
+
+            resultado.innerHTML = "";
+            res.map(e => resultado.innerHTML += `
+                <h2>${e.nome}</h2>
+                <p>Cidade: ${e.cidade} <br> Sexo: ${e.sexo}</p>
+            `);
+        };
+
+        async function getByID() {
+            const idInput = document.getElementById('inputd-id');
+            const id = parseInt(idInput.value);
+
+            const req = await fetch(`http://127.0.0.1:5000/pacientes/${id}`);
+            const res = await req.json();
+
+            resultadoId.innerHTML = `
+                <h2>${res.nome}</h2>
+                <p>Cidade: ${res.cidade} <br> Sexo: ${res.sexo}</p>
+            `;
+        };
+
+
+        form.addEventListener('click', async (event) => {
+            event.preventDefault();
+            getAll();
+        });
+
+        formId.addEventListener('click', async (event) => {
+            event.preventDefault();
+            getByID();
+        });
+
+
+
+    </script>
+</body>
+
+</html>

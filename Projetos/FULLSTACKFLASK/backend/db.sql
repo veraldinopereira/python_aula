@@ -1,0 +1,11 @@
+DROP DATABASE IF EXISTS pacientes;
+
+CREATE DATABASE pacientes;
+
+CREATE TABLE paciente (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(60) NOT NULL,
+    idade INT NOT NULL,
+    sexo VARCHAR(20) NOT NULL,
+    cidade VARCHAR(30) NOT NULL,
+);
