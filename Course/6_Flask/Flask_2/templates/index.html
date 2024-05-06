@@ -58,15 +58,16 @@
                         Cidade:
                     </label>
                     <input class="form-control mb-4" type="text" name="cidade" id="input-cidade">
+                    
+                    {% if dados_concatenados %}
+                        <p>{{ dados_concatenados }}</p>
+                    {% endif %}
 
                     <input class="btn btn-primary" type="submit" value="Cadastrar">
                 </form>
             </div>
-
-
         </div>
     </main>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
