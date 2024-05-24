@@ -1,0 +1,152 @@
+Observações:
+1. backup.py é um arquivo que foi refatorado. Mas estou mantendo ele dentro da pasta.
+Caso você ainda queira deletar, pode deletar. 
+
+2. O projeto está divido em 3 arquivos.
+- main.py
+- process.py
+- visual.py
+
+O arquivo de inicialização é o main.py. (você precisa instalar o matplotlib).
+
+3. O mais díficil do projeto:
+R: Criar toda a parte da modulação das funções e os dicionários para os CSV's.
+
+4. O que faltou/ ou poderia ter melhorado no projeto:
+R: Poderia ter mais modulações e classes POO. 
+
+----------------------
+INSTRUÇÕES e EXPLICAÇÕES:
+Introdução
+O projeto de Análise de Avaliações da Disneyland tem como objetivo analisar e visualizar os dados das avaliações dos parques da Disneyland. O projeto consiste em três módulos principais: Processamento de Dados, Interface de Usuário em Texto (TUI) e Visualização.
+
+Funcionalidades do Projeto
+O projeto oferece as seguintes funcionalidades:
+
+A - Ver Dados
+    Visualizar avaliações por parque
+    Verificar o número de avaliações por parque e localização do avaliador
+    Calcular a média das avaliações por ano e por parque
+    Calcular a média das avaliações por parque e localização do avaliador
+
+B - Visualizar Dados
+    Visualizar os parques mais avaliados em um gráfico de pizza
+    Visualizar a média das avaliações por parque em um gráfico de barras
+    Visualizar as melhores localizações por parque em um gráfico de barras
+    Visualizar a média das avaliações por mês para um parque específico em um gráfico de barras
+
+
+
+Instalação e Dependências
+    Para executar o projeto, é necessário instalar as seguintes dependências:
+
+    matplotlib: Biblioteca para plotar gráficos.
+    calendar: Biblioteca para lidar com informações de calendário.
+    csv: Biblioteca para lidar com arquivos CSV.
+    json: Biblioteca para lidar com arquivos JSON.
+    Você pode instalar essas dependências executando o seguinte comando: pip install matplotlib calendar
+
+Exemplo de Uso
+A seguir, são apresentados exemplos de entrada para todas as opções disponíveis no projeto:
+
+Opção A: Ver Dados
+    Subopção A: Visualizar Avaliações por Parque
+    Entrada: A
+    Exemplo: Disneyland_Paris
+
+    Subopção B: Verificar Número de Avaliações por Parque e Localização
+    Entrada: B
+    Exemplo: Disneyland_Paris, United States
+
+    Subopção C: Calcular Média das Avaliações por Ano e por Parque
+    Entrada: C
+    Exemplo: Disneyland_Paris, 2023
+
+    Subopção D: Calcular Média das Avaliações por Parque e Localização do Avaliador
+    Entrada: D
+
+
+Opção B: Visualizar Dados
+    Subopção A: Parques Mais Avaliados em Gráfico de Pizza
+    Entrada: A
+    
+    Subopção B: Média das Avaliações por Parque em Gráfico de Barras
+    Entrada: B
+    
+    Subopção C: Melhores Localizações por Parque em Gráfico de Barras
+    Entrada: C
+    
+    Subopção D: Média das Avaliações por Mês para um Parque Específico em Gráfico de Barras
+    Entrada: D
+    Exemplo: Disneyland_Paris
+
+
+
+Funções:
+Funções de Processamento de Dados (process.py)
+read_csv():
+
+Utilidade: Lê um arquivo CSV contendo os dados das avaliações do Disneyland.
+Bibliotecas Utilizadas: csv
+Funcionamento: Abre o arquivo CSV e utiliza o módulo csv.DictReader para ler o conteúdo do arquivo e converter cada linha em um dicionário.
+save_reviews_park(data, file_name):
+
+Utilidade: Salva os dados de um parque em três formatos diferentes: CSV, TXT e JSON.
+Bibliotecas Utilizadas: csv, json
+Funcionamento: Utiliza o módulo csv.DictWriter para escrever os dados em formato CSV, e os módulos json.dump() e json.dump() para salvar em formatos TXT e JSON, respectivamente.
+count_reviews(data, location, park):
+
+Utilidade: Conta o número de avaliações para um parque e uma localização específicos.
+Funcionamento: Itera sobre os dados para encontrar as avaliações correspondentes ao parque e localização fornecidos, contando o número de ocorrências.
+save_reviews(count, location, park, name_file):
+
+Utilidade: Salva o número de avaliações para um parque e uma localização em três formatos diferentes: CSV, TXT e JSON.
+Funcionamento: Similar à função save_reviews_park(), mas adaptada para salvar informações sobre o número de avaliações.
+average_rating_by_year(data, park, year):
+
+Utilidade: Calcula a média das avaliações de um determinado parque em um ano específico.
+Funcionamento: Itera sobre os dados para encontrar as avaliações correspondentes ao parque e ano fornecidos, calculando a média das avaliações.
+save_average_rating_by_year(park, year, average_rating, filename):
+
+Utilidade: Salva a média das avaliações de um parque em um ano específico em três formatos diferentes: CSV, TXT e JSON.
+Funcionamento: Similar às funções de salvamento anteriores, mas adaptada para salvar a média das avaliações por ano.
+average_rating_by_all_location(data):
+
+Utilidade: Calcula a média das avaliações por localização para todos os parques.
+Funcionamento: Utiliza um dicionário padrão para organizar e calcular as médias das avaliações por localização para cada parque.
+save_location_ratings_to_csv(location_ratings, file_name):
+
+Utilidade: Salva as médias das avaliações por localização em três formatos diferentes: CSV, TXT e JSON.
+Funcionamento: Similar às funções de salvamento anteriores, mas adaptada para salvar as médias das avaliações por localização.
+
+
+Funções de Visualização de Dados (visual.py)
+As funções em visual.py lidam com a visualização dos dados usando a biblioteca Matplotlib.
+
+count_reviews_by_branch(data):
+
+Utilidade: Conta o número de avaliações para cada parque.
+Funcionamento: Itera sobre os dados para contar o número de avaliações para cada parque.
+plot_pie_chart(counts):
+
+Utilidade: Plota um gráfico de pizza mostrando a distribuição das avaliações entre os parques.
+Funcionamento: Utiliza a biblioteca Matplotlib para criar o gráfico de pizza com as contagens fornecidas.
+average_rating_by_branch(data):
+
+Utilidade: Calcula a média das avaliações para cada parque.
+Funcionamento: Itera sobre os dados para calcular a média das avaliações para cada parque.
+plot_bar_chart(averages):
+
+Utilidade: Plota um gráfico de barras mostrando a média das avaliações para cada parque.
+Funcionamento: Utiliza a biblioteca Matplotlib para criar o gráfico de barras com as médias fornecidas.
+average_rating_by_location(data, park):
+
+Utilidade: Calcula a média das avaliações por localização para um parque específico.
+Funcionamento: Utiliza um dicionário padrão para organizar e calcular as médias das avaliações por localização.
+plot_top_locations(averages, park):
+
+Utilidade: Plota um gráfico de barras mostrando as melhores localizações por média de avaliação para um parque específico.
+Funcionamento: Utiliza a
+
+Conclusão
+O projeto de Análise de Avaliações da Disneyland oferece uma variedade de funcionalidades para analisar e visualizar dados de avaliações dos parques da Disneyland. Com uma interface intuitiva e gráficos informativos, os usuários podem explorar e entender melhor as avaliações dos parques.
