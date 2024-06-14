@@ -15,7 +15,24 @@ def cadastro():
     usuario = {"nome":nome, "idade": idade}
     usuarios.append(usuario)
     print(usuarios)
-    return render_template('index.html', resultado = usuarios)
+    return render_template('index.html')
+
+@app.route('/cadastros', methods=['GET'])
+def exibir_cadastro():
+    return render_template('cadastros.html', resultado = usuarios)
+
+@app.route('/cadastro_nome', methods=['GET'])
+def exibir_cadastro_nome():
+    resultado = []
+    nome_pesquisado = request.args.get('buscar_nome')
+    print(nome_pesquisado)
+    for element in usuarios:
+        element['nome']==nome_pesquisado
+        resultado.append(element)
+    print(resultado)
+    return render_template('index.html')
+    
+##criar rota para pesquisa
 
 if __name__ == '__main__':
     app.run(debug=True)
