@@ -1,0 +1,248 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "api-aula-python",
+        "version": "1.0.0",
+        "description": "Aula de API Python + Flasck ministrado pelo Prof. Alberto, usando CRUD"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:5000",
+            "description": ""
+        }
+    ],
+    "paths": {
+        "/api/usuarios": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Cadastro"
+                                    }
+                                },
+                                "examples": {
+                                    "TODOS": {
+                                        "value": [
+                                            {
+                                                "id": 1,
+                                                "nome": "VERALDINO",
+                                                "email": "@VERALDINO",
+                                                "senha": "**********"
+                                            },
+                                            {
+                                                "id": 1,
+                                                "nome": "junior",
+                                                "email": "s@junior",
+                                                "senha": "**********"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Conexao com Exito"
+                    }
+                },
+                "operationId": "0001",
+                "summary": "Consulta de Usuarios Total"
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Cadastro"
+                            },
+                            "examples": {
+                                "2": {
+                                    "value": {
+                                        "id": 10,
+                                        "nome": "veraldino santos",
+                                        "email": "@@",
+                                        "senha": "**********"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cadastro"
+                                },
+                                "examples": {
+                                    "2": {
+                                        "value": {
+                                            "id": 2,
+                                            "nome": "veraldino",
+                                            "email": "@",
+                                            "senha": "**********"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Conexao ok"
+                    }
+                },
+                "summary": "Criar Cliente"
+            }
+        },
+        "/api/usuarios/{id}": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cadastro"
+                                },
+                                "examples": {
+                                    "ID": {
+                                        "value": {
+                                            "id": 2,
+                                            "nome": "veraldino.pereira",
+                                            "email": "palmeiras@",
+                                            "senha": "**********"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Conexão OK"
+                    }
+                },
+                "summary": "Consulta Usuario por ID"
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Cadastro"
+                            },
+                            "examples": {
+                                "2": {
+                                    "value": {
+                                        "id": 2,
+                                        "nome": "veraldino",
+                                        "email": "0",
+                                        "senha": "**********"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cadastro"
+                                },
+                                "examples": {
+                                    "2": {
+                                        "value": {
+                                            "id": 2,
+                                            "nome": "veraldino",
+                                            "email": "0",
+                                            "senha": "**********"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Conexao ok"
+                    }
+                },
+                "operationId": "0004",
+                "summary": "Alterar Cliente"
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cadastro"
+                                },
+                                "examples": {
+                                    "2": {
+                                        "value": {
+                                            "id": 2,
+                                            "nome": "veraldino",
+                                            "email": "@",
+                                            "senha": "**********"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "\"message\":\"usuario deletado com sussa\""
+                    }
+                },
+                "operationId": "0005",
+                "summary": "Deletar Cliente"
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "ID": {
+                            "value": "5"
+                        }
+                    },
+                    "name": "id",
+                    "description": "Codigo do Cliente",
+                    "schema": {
+                        "type": "number"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "Cadastro": {
+                "description": "Cadastro de Usuario e senha",
+                "required": [
+                    "id",
+                    "nome",
+                    "email",
+                    "senha"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "Chave primaria",
+                        "type": "number"
+                    },
+                    "nome": {
+                        "description": "Nome da Pessoa",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Email do Cadastro",
+                        "type": "string"
+                    },
+                    "senha": {
+                        "format": "password",
+                        "description": "Senha do Cadastro",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

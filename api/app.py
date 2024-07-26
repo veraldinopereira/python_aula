@@ -50,7 +50,7 @@ def update_user(id):
             return jsonify({'message': 'Usuario atualizado com sussa'})
     return jsonify({'message': 'Usuario not found'}), 404   
 
-@app.route("/api/usuarios/apagar/<int:id>", methods=['DELETE'])
+@app.route("/api/usuarios/<int:id>", methods=['DELETE'])
 def delete_user(id):
     with open('data.json', encoding='utf-8') as json_file:
         data = json.load(json_file)
