@@ -33,8 +33,10 @@ def cadastrar():
         if element['nome'] == new_user['nome']:
             return jsonify({"msg": "nome ja cadastrado"})
 
-    new_user['id'] = len(data['usuarios'])+1    
-    data['usuarios'].append(new_user)    
+    new_user['id'] = int(data['usuarios'][-1]['id']+1)
+   # print(data['usuarios'][-1]['id']+1)
+    data['usuarios'].append(new_user)  
+
     
     with open ('data.json', 'w', encoding='utf-8') as file:
         json.dump(data, file, indent=4, ensure_ascii=False)
