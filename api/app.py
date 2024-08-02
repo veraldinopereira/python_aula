@@ -1,7 +1,10 @@
 from flask import Flask, request, jsonify
 import json
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+CORS(app)
 
 @app.route('/api/usuarios', methods=['GET'])
 def index():
@@ -59,8 +62,8 @@ def delete_user(id):
             data['usuarios'].remove(element)
             with open('data.json', 'w', encoding='utf-8') as json_file:
                 json.dump(data, json_file)
-            return jsonify({'message':'usuario deletado com sussa'})
-    return jsonify({'message': 'usuario not foun'}), 404
+            return jsonify({'msg':'usuario deletado com sussa'})
+    return jsonify({'message': 'usuario not found'}), 404
 
         
 if __name__ == '__main__':
